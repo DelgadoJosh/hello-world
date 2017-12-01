@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\detja\Desktop\Josh&apos;s Folder\Programming\Eclipse\FinalProjectV5Me"/>
+		<item value="C:\Users\detja\Desktop\Josh&apos;s Folder\Programming\Eclipse\FinalProjectV3Me"/>
+		<item value="C:\Users\detja\Desktop\Josh&apos;s Folder\Programming\Eclipse"/>
+		<item value="C:\Users\detja\Desktop\Josh&apos;s Folder\Programming\Eclipse\FinalProjectv3Me"/>
+		<item value="C:\Users\detja\Desktop\Josh&apos;s Folder\Programming\Eclipse\FinalProjectv2Me"/>
+	</list>
+	<section name="ResourceNavigator">
+		<item value="Aggregate for window 1503764352044" key="ResourceWorkingSetFilter.STORE_WORKING_SET"/>
+		<item value="1" key="ResourceViewer.STORE_SORT_TYPE"/>
+		<item value="true" key="LINK_NAVIGATOR_TO_EDITOR"/>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item value="1138" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="802" key="DIALOG_HEIGHT"/>
+		<item value="241" key="DIALOG_X_ORIGIN"/>
+		<item value="351" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

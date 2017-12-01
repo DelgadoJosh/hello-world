@@ -1,0 +1,210 @@
+// ***NOTE: Make sure you update the FILE_LOC ***
+//
+// This file reads in the enemy wave information from a text file
+// To use this, first use enemyReader.initialize();
+// Then to access the waveEnemyType, do enemyReader.waveEnemyType
+// Then to access the waveDelay, do enemyReader.waveDelay
+
+import java.io.*;
+import java.util.*;
+
+public class enemyReader 
+{
+	public static String FILE_LOC = "src\\enemyTest.txt"; // File Location
+	public static ArrayList<String[]> waveEnemyType;
+	public static ArrayList<int[]> waveDelay;
+	public static ArrayList<int[]> waveLocation;
+	public static ArrayList<Enemy[]> waveEnemies;
+	public static int wFrame;
+	public static int hFrame;
+	public static int numWaves;
+	
+	//This is for testing.
+	public static void main(String[] args) throws IOException, FileNotFoundException
+	{
+		initialize();
+		System.out.println("Successfully Initialized");
+		
+		printInfo();
+	}
+	
+	//Reads in the enemy wave information from a text file, 
+	//and stores it in the waveEnemyType, waveDelay, and waveLocation ArrayLists
+	public static void initialize() throws IOException
+	{
+		//Creates Buffered Reader to read textFile
+		//Remember to change the file Input location
+		BufferedReader fin = new BufferedReader( new FileReader(FILE_LOC) );
+		
+		//Reads in number of waves
+		numWaves = Integer.parseInt(fin.readLine() );
+		
+		//Initialize ArrayLists
+		waveEnemyType = new ArrayList<String[]>();
+		waveDelay = new ArrayList<int[]>();
+		waveLocation = new ArrayList<int[]>();
+		waveEnemies = new ArrayList<Enemy[]>();
+		
+		//Reads in each wave of enemies
+		for(int i = 0; i < numWaves; i++)
+		{
+			//Reads in number of Enemies
+			String tempL = fin.readLine();
+			String[] tempLArray = tempL.split(" ");
+			int numEnemies = Integer.parseInt(tempLArray[0]);
+			
+			String[] enemyTypes = new String[numEnemies];
+			int[] delay = new int[numEnemies];
+			int[] location = new int[numEnemies];
+			Enemy[] enemies = new Enemy[numEnemies];
+						
+			//Reads in each enemyType
+			for(int j = 0; j < numEnemies; j++)
+			{
+				//Reads in a line, and breaks it apart into tokens into a String Array sArray
+				String line = fin.readLine();
+				String[] sArray = line.split(" ");
+				//print(sArray);
+				
+				//If user inputs a new type of enemy with overriden health, speed, and score
+				//(For boss creation)
+				//
+				//Syntax:   new enemyMoveTYPE health speed score delay xSpawn
+				//Syntax2:  new sine health speed score delay 
+				//
+				//The enemyType is so you could have the specific behaviors of special enemies if wished
+				//Optional: Could do it so you don't need a "new" keyword, and it will merely take it in based on length
+				//Optional: Add boss label, which includes it in the type, and will thus label the enemy as special
+				//Note: If xSpawn is Out of Bounds, it will spawn randomly.
+				//Note: Currently, delay is in sec/100
+				if(sArray[0].equals("new") )
+				{
+					String temp = "";
+					//Reads in "new enemyTYPE health speed score " as Temp
+					for(int k = 0; k < sArray.length-2; k++)
+					{
+						temp += sArray[k] + " ";
+					}
+					enemyTypes[j] = temp;
+					delay[j] = Integer.parseInt(sArray[sArray.length-2]);
+					location[j] = Integer.parseInt(sArray[sArray.length-1]);
+				}
+				
+				//For default user input
+				//Syntax: enemyType delay xSPawn
+				//Note: if xSpawn is Out of Bounds, it will spawn randomly.
+				else
+				{
+					enemyTypes[j] = sArray[0];
+					delay[j] = Integer.parseInt(sArray[sArray.length-2]);
+					location[j] = Integer.parseInt(sArray[sArray.length-1]);
+				}
+				
+				enemies[j] = createEnemy(i, j, enemyTypes[j]);
+				
+			}
+			
+			waveEnemyType.add(enemyTypes);
+			waveDelay.add(delay);
+			waveLocation.add(location);
+			waveEnemies.add(enemies);
+			
+		}
+				
+		//Closes reader
+		fin.close();
+				
+	}
+	
+	public static Enemy createEnemy(int wave, int enemyNum, String enemyType)
+	{
+		String[] sArray = enemyType.split(" ");
+		String id = wave + "-" + enemyNum;
+		
+		//If it is a custom enemy
+		if(sArray.length > 1)
+		{
+			int health = Integer.parseInt(sArray[2]);
+			double spd = Double.parseDouble(sArray[3]);
+			int score = Integer.parseInt(sArray[4]);
+			if(sArray.length == 7)
+			{
+				double amp = Double.parseDouble(sArray[5]);
+				double freq = Double.parseDouble(sArray[6]);
+				return new Enemy(id, sArray[1], health, spd, score, wFrame, hFrame, amp, freq);
+			}
+			
+			return new Enemy(id, sArray[1], health, spd, score, wFrame, hFrame);
+		}
+		
+		//If it is a prebuilt case
+		else
+		{
+			int typeHealth = ((int)(enemyType.charAt(enemyType.length()-1) - 'A') +1);
+			//Returns the enemy based on prefabricated settings
+			//EnemyType Input Syntax: TypeN. N = alphanumeric character for health
+			//Other Syntax: 
+			switch(enemyType.substring(0, enemyType.length()-1))
+			{
+			case "" :  //In this case, the enemyMoveType would be "N" eg. "A" for one health default loadout.
+				return new Enemy(id, typeHealth, 1, 10, wFrame, hFrame);
+			case "Type" :
+				return new Enemy(id, typeHealth, .5, 10, wFrame, hFrame);
+			case "s" :
+				return new Enemy(id, "sine", typeHealth, 1, 100, wFrame, hFrame);
+			case "Wall" :
+				return new Enemy(id, typeHealth, .5, 10, wFrame, hFrame);
+			case "SlowWall" :
+				return new Enemy(id, typeHealth, .3, 10, wFrame, hFrame);
+			case "SSlowWall" : //Super slow enemy
+				return new Enemy(id, typeHealth, .1, 100, wFrame, hFrame);
+			default : 
+				return new Enemy(id, 1, 1, 10, wFrame, hFrame);
+			}
+		}
+		
+	}
+	
+	//Prints out String Arrays
+	public static void print(String[] input)
+	{
+		String output = "[";
+		for(int i = 0; i < input.length; i++)
+		{
+			output += input[i] + " ";
+		}
+		output = output.substring(0, output.length()-1) + "]";
+		System.out.println(output);
+	}
+	
+	//Prints out Integer Arrays
+	public static void print(int[] input)
+	{
+		String output = "[";
+		for(int i = 0; i < input.length; i++)
+		{
+			output += input[i] + " ";
+		}
+		output += "]";
+		System.out.println(output);
+	}
+	
+	//Prints out information about the enemyTypes
+	public static void printInfo()
+	{
+		for(int i = 0; i < waveEnemyType.size(); i++)
+		{
+			System.out.println("Enemies in wave " + (i+1) + ": " );
+			for(int j = 0; j < waveEnemies.get(i).length; j++)
+			{
+				System.out.println(waveEnemies.get(i)[j]);
+			}
+			System.out.print( "Enemy Types in Wave " + (i+1) + ": " ); //+ waveEnemyType.get(i) );
+			print(waveEnemyType.get(i));
+			System.out.print( "Delay in Wave " + (i+1) + ": "); // + waveDelay.get(i) );
+			print(waveDelay.get(i));
+			System.out.print( "Location in Wave " + (i+1) + ": "); // + waveDelay.get(i) );
+			print(waveLocation.get(i));
+		}
+	}
+}

@@ -1,0 +1,26 @@
+5
+3
+TypeA 0
+TypeB 3
+TypeA 2
+4
+A 0
+A 2
+A 1
+A 0
+5
+A 0
+A 2
+A 0
+A 0
+B 0
+3
+C 0
+C 3
+C 2
+5
+A 3
+B 3
+C 0
+D 0
+new E 100 3 100 0

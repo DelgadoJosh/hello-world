@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;FinalProjectV3Me/src/scoreSystem.java&apos; to &apos;ScoreSystem.java&apos;" description="Rename resource &apos;scoreSystem.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/scoreSystem.java" name="ScoreSystem.java" stamp="1511679587171" updateReferences="true"/>
+</session>

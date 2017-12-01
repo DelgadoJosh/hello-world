@@ -1,0 +1,168 @@
+8
+14 ===Demo: Random spawn, different health values, diagonal, sine
+TypeA 0 -1
+WallC 300 500
+WallB 100 450
+WallB 0 550
+WallA 100 400
+WallA 0 600
+new diagonal 2 1 10 600 100
+new diagonal 2 1 10 200 200
+new diagonal 3 1 10 200 600
+new sine 3 .3 30 300 400
+TypeB 300 350
+new sine 2 .7 50 200 400
+TypeG 300 400
+TypeA 600 500
+20 ===2 snakes of 10 sine wave enemies
+new sine 2 .3 10 4 .08 400 400
+new sine 2 .3 10 4 .08 100 400
+new sine 2 .3 10 4 .08 100 400
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 2 .3 10 4 .08 100 400
+new sine 1 .3 10 0 200
+new sine 1 .3 10 100 200
+new sine 1 .3 10 100 200
+new sine 1 .3 10 100 200
+7 ===Enemy Saucer
+SlowWallE 400 150
+SlowWallE 0 200
+SlowWallE 0 250
+SlowWallE 0 300
+SlowWallF 150 200
+SlowWallF 0 250
+A 100 225
+22 ===EnemyMotherShip. Make sure delay of next wave is at least 30 seconds (3000)
+SSlowWallG 1300 200
+SSlowWallG 0 250
+SSlowWallG 0 300
+SSlowWallG 0 350
+SSlowWallG 0 400
+SSlowWallG 0 450
+SSlowWallG 0 500
+SSlowWallG 0 550
+SSlowWallH 200 250
+SSlowWallH 0 300
+SSlowWallH 0 350
+SSlowWallH 0 400
+SSlowWallH 0 450
+SSlowWallH 0 500
+SSlowWallH 200 250
+SSlowWallH 0 300
+SSlowWallH 0 350
+SSlowWallH 0 400
+SSlowWallH 0 450
+SSlowWallH 0 500
+SSlowWallH 200 350
+SSlowWallH 0 400
+35 ===15 Random Enemies + 20 sine wave. Looks like an invasion force
+TypeA 0 35
+TypeB 0 450
+TypeB 50 340
+TypeB 0 200
+TypeA 0 270
+TypeB 300 500
+TypeA 0 610
+TypeB 50 560 
+TypeB 0 430
+TypeA 0 230
+TypeB 200 -1
+TypeA 0 -1
+TypeB 0 -1
+TypeB 0 -1
+TypeA 0 -1
+new sine 2 .3 50 4 .08 400 400
+new sine 2 .3 50 4 .08 100 400
+new sine 2 .3 50 4 .08 100 400
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 2 .3 50 4 .08 100 400
+new sine 1 .3 50 0 200
+new sine 1 .3 50 100 200
+new sine 1 .3 50 100 200
+new sine 1 .3 50 100 200
+15 ===Proof of concept with large walls. This should kill the player
+SlowWallG 2000 0
+SlowWallG 0 50
+SlowWallG 0 100
+SlowWallG 0 150
+SlowWallG 0 200
+SlowWallG 0 250
+SlowWallG 0 300
+SlowWallG 0 350
+SlowWallG 0 400
+SlowWallG 0 450
+SlowWallG 0 500
+SlowWallG 0 550
+SlowWallG 0 600
+SlowWallG 0 650
+SlowWallG 1000 0
+9 ===Special Surprise for the audience
+WallG 100 300
+WallG 0 500
+WallG 100 300
+WallG 0 500
+WallG 100 250
+WallG 0 300
+WallG 0 350
+WallG 0 450
+WallG 0 550
+15
+SlowWallA 1000 0
+SlowWallA 0 50
+SlowWallA 0 100
+SlowWallA 0 150
+SlowWallA 0 200
+SlowWallA 0 250
+SlowWallA 0 300
+SlowWallA 0 350
+WallA 0 400
+WallA 0 450
+WallA 0 500
+WallA 0 550
+WallA 0 600
+WallA 0 650
+WallA 1000 0
+4
+A 1000 200
+A 200 100
+A 100 350
+A 0 250
+5
+A 300 200
+A 200 500
+A 50 300
+A 50 700
+B 300 0
+3
+C 100 300
+C 300 200
+C 200 300
+6
+A 300 400
+B 300 250
+C 0 200
+D 0 300
+new E 8 1 700 100 400
+D 300 400

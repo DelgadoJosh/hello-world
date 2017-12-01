@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class grid 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		
+		int numRows = in.nextInt();
+		int numCols = in.nextInt();
+		
+		int[][] map = new int[numRows][numCols];
+		int[][] numJumps = new int[numRows][numCols]; //Should I use longs?
+		for(int i = 0; i < numRows; i++)
+		{
+			Arrays.fill(numJumps[i], 2000000000);
+		}
+		
+		char[][] cMap = new int[numRows][numCols];
+		for(int row = 0; row < numRows; row++)
+		{
+			
+		}
+		for(int row = 0; row < numRows; row++)
+		{
+			for(int col = 0; col < numCols; col++)
+			{
+				map[]
+			}
+		}
+		
+		
+		
+	}
+	
+	public static boolean inBounds(int row, int col, int numRows, int numCols)
+	{
+		return (row >= 0) && (col >= 0) && (row< numRows) && (col < numCols);
+	}
+}

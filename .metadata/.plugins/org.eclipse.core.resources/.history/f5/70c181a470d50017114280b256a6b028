@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class grid 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		
+		int numRows = in.nextInt();
+		int numCols = in.nextInt();
+		
+		int[][] numJumps = new int[numRows][numCols]; //Should I use longs?
+		Arrays.fill(numJumps, -1);
+		
+	}
+}

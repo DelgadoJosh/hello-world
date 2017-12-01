@@ -1,0 +1,221 @@
+import java.awt.Color;
+import java.util.*;
+import java.util.Random;
+
+import javax.swing.JLabel;
+
+public class Enemy extends JLabel{
+	private String id, moveType;
+	private int health, wFrame, hFrame, direction = 1;
+	private double speed, dx, dy;
+	private double amp = 5;
+	private double freq = .05;
+	private ArrayList<Color> colors = new ArrayList<Color>();
+	
+	//Constructor for enemy class, default move type
+	public Enemy(String s, int hp, double spd, int width, int height){
+		id = s;
+		moveType = "strightDown";
+		health = hp;
+		speed = spd;
+		wFrame = width; //Width of the frame, not the enemy itself
+		hFrame = height; //Height of the frame, not the enemy itself
+		dx = 0;
+		dy = 0;
+		
+		this.setBackground(Color.CYAN);
+		this.setSize(50,50);
+		this.setOpaque(true);
+		this.setVisible(false);
+	}
+	
+	//Constructor for enemy class, custom move type
+	public Enemy(String s, String m, int hp, double spd, int score, int width, int height){
+		id = s;
+		moveType = m;
+		health = hp;
+		speed = spd;
+		wFrame = width; //Width of the frame, not the enemy itself
+		hFrame = height; //Height of the frame, not the enemy itself
+		dx = 0;
+		dy = 0;
+		
+		this.setBackground(Color.CYAN);
+		this.setSize(50,50);
+		this.setOpaque(true);
+		this.setVisible(false);
+	}
+	
+	//Constructor for enemy class, with custom amp and freq
+	public Enemy(String s, String m, int hp, double spd, int width, int height, double a, double f){
+		id = s;
+		moveType = m;
+		health = hp;
+		speed = spd;
+		wFrame = width; //Width of the frame, not the enemy itself
+		hFrame = height; //Height of the frame, not the enemy itself
+		dx = 0;
+		dy = 0;
+		amp = a;
+		freq = f;
+		
+		this.setBackground(Color.CYAN);
+		this.setSize(50,50);
+		this.setOpaque(true);
+		this.setVisible(false);
+	}
+	
+	//Spawns the enemy at a random spawn location
+	public void spawn(){
+		Random rn = new Random();
+		int x = Math.abs(rn.nextInt()) % (wFrame - this.getWidth() + 1);
+		
+		//Places the enemy right above the screen
+		this.setLocation(x, -this.getHeight());
+		this.setText(id + ", "+ x);
+		this.setVisible(true);
+		this.initColors();
+		this.setColor(health);
+	}
+	
+	//Spawns the enemy at a specified X coordinate
+	public void spawn(int xPos){
+		if(!inBounds(xPos))
+		{
+			this.spawn();
+			return;
+		}
+		
+		//Place enemy at specified location, right above the screen
+		this.setLocation(xPos, -this.getHeight());
+		this.setText(id + ", "+ xPos);
+		this.setVisible(true);
+		this.initColors();
+		this.setColor(health);
+	}
+	
+	//If the enemy is hit, lowers health and changes color
+	public void hit(){
+		health--;
+		if(health <= 0){
+			this.setVisible(false);
+			return;
+		}
+		this.setColor(health);
+	}
+	
+	//Move the enemy, according to it's move type
+	public void move(){
+		if(this.isVisible()){
+			switch(moveType) 
+			{
+			case "straightDown" :
+				this.goDown();
+				break;
+			case "sine" :
+				this.goSine();
+				break;
+			case "diagonal" :
+				this.goDiagonal();
+				break;
+			default :
+				this.goDown();
+				break;
+			}
+		}
+	}
+	
+	//Creates an arrayList of colors for the different health values
+	// This one is ROY G BIV, with Red being the lowest health
+	public void initColors()
+	{
+		colors.add(new Color(255, 51, 0)); //Deep Red
+		colors.add(new Color(255, 153, 51)); //Deep Orange
+		colors.add(new Color(255, 255, 102)); //Bright Yellow
+		colors.add(new Color(204, 255, 102)); //Bright Green
+		colors.add(new Color(102, 255, 204)); //Green-Blue
+		colors.add(new Color(0, 255, 255)); //Cyan
+		colors.add(new Color(51, 204, 255)); //Medium Blue
+		colors.add(new Color(0, 51, 204)); //Dark Blue
+	}
+	
+	//Sets color to the specified int value
+	public void setColor(int num)
+	{
+		num--;
+		if(num >= colors.size())
+		{
+			this.setBackground(colors.get(colors.size()-1));
+			return;
+		}
+		if(num < 0)
+		{
+			this.setBackground(colors.get(0));
+			return;
+		}
+		this.setBackground(colors.get(num));
+		
+	}
+	
+	//Returns if a number is in bounds of the frame
+	public boolean inBounds(int xPos)
+	{
+		return (xPos >= 0 && xPos <= wFrame);
+	}
+	
+	//Prints out enemy and its health and speed
+	public String toString()
+	{
+		return "Enemy " + id + ": (" + health + ", " + speed + ")";
+	}
+	
+	//Goes straight down
+	public void goDown()
+	{
+		//Dy's purpose is to allow for uneven movement every other tick, for decimal increments on average
+		dy += speed;
+		if(dy >= 1)
+		{
+			this.setLocation(this.getX(), this.getY() + (int)dy);
+			dy -= (int)dy;
+		}
+	}
+	
+	//Goes in a sine wave downward
+	public void goSine()
+	{
+		dy += speed;
+		dx += 1;
+		if(dy >= 1)
+		{
+			this.setLocation(this.getX(), this.getY() + (int)dy);
+			dy -= (int)dy;
+		}
+		this.setLocation(this.getX() + (int)(amp*Math.cos(freq * dx)), this.getY());
+		
+	}
+	
+	//Allows for it to go diagonally
+	public void goDiagonal()
+	{
+		//For going down
+		dy += speed;
+		if(dy >= 1)
+		{
+			this.setLocation(this.getX(), this.getY() + (int)(dy));
+			dy -= (int)dy;
+		}
+		
+		dx += speed*direction;
+		if(dx >= 1 || dx <= -1)
+		{
+			if( (this.getX() + (int)dx > wFrame - this.getWidth()) || (this.getX() + (int)dx < 0) )
+			{
+				direction *= -1;
+				//dx *= -1;
+			}
+			this.setLocation(this.getX() + (int)dx, this.getY());
+			dx -= (int)dx;
+		}
+	}
+}

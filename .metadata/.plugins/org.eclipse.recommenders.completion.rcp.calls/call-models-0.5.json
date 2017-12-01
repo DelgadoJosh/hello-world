@@ -1,0 +1,23 @@
+{
+  "C:\\Program Files\\Java\\jre1.8.0_144\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_144\\lib\\rt.jar",
+    "status": "RESOLVED",
+    "error": "No call model found for \u0027C:\\Program Files\\Java\\jre1.8.0_144\\lib\\rt.jar\u0027. Neither fingerprint \u0027953ee91fd9bd5cddb1880182bf0a122326b4f5eb\u0027 nor symbolic name \u0027jre\u0027 are known."
+  },
+  "C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\StudyingProgrammingTeam\\src": {
+    "location": "C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\StudyingProgrammingTeam\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\StudyingProgrammingTeam\\src\u0027. Skipped."
+  },
+  "C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\17-FinalProject-IntroToC\\src": {
+    "location": "C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\17-FinalProject-IntroToC\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\17-FinalProject-IntroToC\\src\u0027. Skipped."
+  },
+  "C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\Guest\\src": {
+    "location": "C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\Guest\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\detja\\Desktop\\Josh\u0027s Folder\\Programming\\Eclipse\\Guest\\src\u0027. Skipped."
+  }
+}

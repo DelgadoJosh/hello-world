@@ -1,0 +1,119 @@
+import java.util.*;
+
+public class StonesOnTheTable 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		
+		int numStones = in.nextInt();
+		String input = in.next();
+		int output = 0;
+		boolean notDone = true;
+		
+		
+		while(notDone)
+		{
+			int indR = input.indexOf("R");
+			int indG = input.indexOf("G");
+			int indB = input.indexOf("B");
+			
+			System.out.println("IndR = " + indR);
+			System.out.println("IndG = " + indG);
+			System.out.println("IndB = " + indB);
+			
+			//Red first letter
+			if(indR == 0)
+			{
+				//If red is the only color remaining
+				if(indG == -1 && indB == -1)
+				{
+					output += input.length()-1;
+					break;
+				}
+				
+				//Only green remains
+				if(indB == -1)
+				{
+					
+				}
+				
+				//Green is the next color and exists in the string
+				else if(indG != -1 && indG < indB)
+				{
+					output += indG-1;
+					input = input.substring(indG);
+					break;
+				} 
+				
+				//Blue is the next color
+				else if(indB != -1 && indB < indG)
+				{
+					output += indB-1;
+					input = input.substring(indB);
+					break;
+				}
+				
+			} 
+			
+			//Green first
+			else if(indG == 0)
+			{
+				//If green is the only color remaining
+				if(indR == -1 && indB == -1)
+				{
+					output += input.length()-1;
+					break;
+				}
+				
+				//Red is the next color and exists in the string
+				if(indR != -1 && indR < indB)
+				{
+					output += indR-1;
+					input = input.substring(indR);
+					break;
+				} 
+				
+				//Blue is the next color
+				else if(indB != -1 && indB < indR)
+				{
+					output += indB-1;
+					input = input.substring(indB);
+					break;
+				}
+			}
+			
+			//Blue
+			else if(indB == 0)
+			{
+				//If blue is the only color remaining
+				if(indR == -1 && indG == -1)
+				{
+					output += input.length()-1;
+					break;
+				}
+				
+				//Red is the next color and exists in the string
+				if(indR != -1 && indR < indG)
+				{
+					output += indR-1;
+					input = input.substring(indR);
+					break;
+				} 
+				
+				//Green is the next color
+				else if(indG != -1 && indG < indR)
+				{
+					output += indG-1;
+					input = input.substring(indG);
+					break;
+				}
+			}
+			
+			System.out.println("Error");
+			break;
+		}
+		
+		System.out.print(output);
+	}
+}
